@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>flexWrap</title>
+    <style>
+        .container{
+            display: flex;
+            border: 10px solid goldenrod;
+            height: 100vh;
+            justify-content: flex-start;
+            
+        }
+        .item{
+            color:white;
+            font-size: 100px;
+            text-align: center;
+            text-shadow:1px black;
+            padding:10px;
+            width: 33.33333%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item" style="background-color: aquamarine;">1</div>
+        <div class="item" style="background-color: blue; padding-bottom: 200px; align-self: stretch;">2</div>
+        <div class="item" style="background-color: purple;">3</div>
+        <div class="item" style="background-color: grey;">4</div>
+        <div class="item" style="background-color: yellow;">5</div>
+        <div class="item" style="background-color: orange; padding-bottom: 0; align-self: center;">6</div>
+        <div class="item" style="background-color: red;">7</div>
+        <div class="item" style="background-color: lightgrey;;">8</div>
+        <div class="item" style="background-color: greenyellow; padding-bottom: 50px; align-self: flex-end;">9</div>
+        <div class="item" style="background-color: green;">10</div>
+    </div>
+</body>
+</html>
