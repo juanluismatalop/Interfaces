@@ -1,0 +1,104 @@
+<html lang="en"></html>
+<head>
+  <meta charset="UTF-8">
+  <title>FlexBox Nav</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        background: #3494E6;
+        background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);
+        background: linear-gradient(to right, #EC6EAD, #3494E6);
+        }
+
+        .wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding:50px;
+        }
+
+        img {
+        max-width:100%;
+        }
+
+        a {
+        color:white;
+        text-decoration: none;
+        font-size: 15px;
+        background:rgba(0,0,0,0.2);
+        padding:20px 5px;
+        }
+        a:hover {
+        background:rgba(0,0,0,0.4);
+        }
+        .slider-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        }
+        .slider-nav li {
+        flex: 2;  
+        text-align: center;
+        display: flex;
+        }
+        .slider-nav .arrow {
+        flex: 1;
+        }
+        .arrow a {
+        font-size: 30px;
+        }
+        .slider-nav a {
+        flex-basis: 100%;
+        display: flex;
+        align-items: center;
+        }
+        .slider-nav span {
+        display: block;
+        width: 100%;
+        }
+  </style>
+</head>
+<body>
+  
+  <div class="wrapper">
+  
+    <div class="slider">
+      <img src="slide.jpeg" >
+    </div>
+
+    <nav class="slider-nav">
+      <ul>
+        
+        <li class="arrow">
+          <a href="#"><span>←</span></a>
+        </li>
+        
+        <li>
+          <a href="#"><span>Add a CLI to Node Apps with Vantage</span></a>
+        </li>
+        
+        <li>
+          <a href="#"><span>NewSprint, Spectacle</span></a>
+        </li>
+        
+        <li>
+          <a href="#"><span>Small Modules: Tales from a Serial Module Author</span></a>
+        </li>
+        
+        <li>
+          <a href="#"><span>The End</span></a>
+        </li>
+        
+        <li class="arrow">
+          <a href="#"><span>→</span></a>
+        </li>
+
+      </ul>
+    </nav>
+  
+  </div>
+</body>
+</html>
