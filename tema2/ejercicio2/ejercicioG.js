@@ -2,7 +2,8 @@
 //incluida la propiedad nombre y apellidos. Desestructura en la función la propiedad nombre y apellidos e imprime el nombre completo:
 
 function imprimirNombreCompleto({ nombre = "Juan Luis", apellidos="Mata", telefono="+34333444666", email="juanluis@gmial.com"}) {
-    const nombreCompleto = [nombre , apellidos]
+    console.log(nombre);
+    const nombreCompleto = [nombre , apellidos];
     console.log(nombreCompleto);
     console.log(telefono);
     console.log(email);

@@ -3,7 +3,7 @@
 //      console.log(key, value);
 //  }
 const persona = { nombre: 'Juan Luis', apellidos: 'Mata', telefono: '+34333444222' };
-for (const [key, value] of Object.entries(person)) {
+for (const [key, value] of Object.entries(persona)) {
     console.log(key, value);
 }
 
