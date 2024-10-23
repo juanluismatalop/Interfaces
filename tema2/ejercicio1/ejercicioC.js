@@ -1,0 +1,1 @@
+let cadenaConBarra = "Este es un ejemplo de la barra invertida: \\";

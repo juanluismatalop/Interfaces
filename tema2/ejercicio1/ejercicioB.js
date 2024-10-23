@@ -1,0 +1,1 @@
+let cadenaConEscape = "Primera línea con tabulador:\tAquí hay un tab.\nSegunda línea conretorno de carro.\rEste es el retorno de carro.";
