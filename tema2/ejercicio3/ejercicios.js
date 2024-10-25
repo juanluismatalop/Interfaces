@@ -27,6 +27,7 @@ arrayH.forEach((value) => console.log(value));
 // i. Elimina dos elementos con delete.
 delete arrayH[5];
 delete arrayH[4];
+console.log("Eliminados 5 y 4")
 //j. Calcula el producto de todos los números del array “datos” con forEach.
 datos.forEach((valor) => {multiplicar *= valor;});
 //k. Cada elemento x del array “datos” debe cambiarse por x*x. Usa forEach.
@@ -35,3 +36,59 @@ datos[index] = value * value;
 });
 //l. Crea un nuevo array con map recorriendo cada elemento x de “datos”, donde cada elemento
 //sea un string “El valor es: x”. Usa template strings.
+const cadenaString = [2,22,222,2222];
+cadenaString.map((x)) = ('El valor es : + ${x}');
+//m. Crea un nuevo array mediante map que incremente cada elemento de “datos” en 5 unidades.
+let incrementadoArray = datos.map((x) => x + 5);
+//n. Mediante filter, quédate con los números impares en un nuevo array impares.
+let impares = datos.filter((x) => x % 2 !== 0);
+// o. Usa find para buscar el número 13.
+let numero13 = datos.find((x) => x === 13);
+//p. Usa every para comprobar si todos los números son positivos.
+const positivos = datos.every((valor) => valor > -1);
+//q. Calcula la sumatoria del array “datos” mediante reduce.
+let sumatoria = datos.reduce((acc, value) => acc + value, 0);
+//r. Calcula el valor más pequeño del array mediante reduce.
+let valorMinimo = datos.reduce((acc, value) => (value < acc ? value : acc), datos[0]);
+// s. Usa flat para aplanar el array multidimensional que creaste anteriormente.
+let arrayAplanado = multiArray.flat();
+// t. Tenemos la cadena: "Vamos a usar flatMap. Es igual que map. Pero aplana los arrays".
+//Separa mediante split las distintas frases. Después mediante map quita los espacios
+//sobrantes (trim). A continuación usa flatMap para extraer todas las palabras de cada
+//frase en un único array.
+let cadena = "Vamos a usar flatMap. Es igual que map. Pero aplana los arrays";
+let frases = cadena.split(". ");
+let palabras = frases.flatMap(frase => frase.trim().split(" "));
+// u. Crea el array a [1,2,3,4,5] y b [6,7,8,9,10] con literales. Concatena los arrays a y
+//b con concat. Después con operador spread. Crea una variable const cola. Usa unshift
+//y shift para añadir y quitar elementos. Dado el array resultante de la concatenación
+//de a y b, obten el subarray desde el índice 2 al penúltimo elemento (slice). Usa
+//splice para quitar los 2 últimos elementos de un array.
+let a = [1, 2, 3, 4, 5];
+let b = [6, 7, 8, 9, 10];
+let concatenado = a.concat(b);
+let concatenadoSpread = [...a, ...b];
+const cola = [...concatenadoSpread];
+cola.unshift(0);
+cola.shift();
+let subArray = concatenadoSpread.slice(2, concatenadoSpread.length - 1);
+subArray.splice(subArray.length - 2, 2);
+//v. Rellena con fill un array de 100 elementos con -1.
+let arrayRelleno = new Array(100).fill(-1);
+// w. Crea un array de cadenas. Busca con indexOf una cadena.
+let cadenas = ["uno", "one", "primero", "hola"];
+let index = cadenas.indexOf(uno);
+// x. Comprueba si la cadena "hola" está dentro del array anterior.
+let indexHola = cadena.indexOf("hola");
+// y. Ordena la lista de cadenas anterior de forma alfabética con sort.
+let cadenasOrdenadas = cadenas.sort();
+// z. Crea un array vacío de 50 posiciones. Con forEach asigna valores aleatorios entre 0 
+//y 100. Después ordena con sort de menor a mayor. Cambia y ordena de mayor a menor.
+const array50 = new Array(50);
+array50.forEach((_, index)=> {
+    array50[index] = Math.floor(Math.random() * 101);
+});
+array50.sort((a, b) => a - b);
+array50.sort((a, b) => b - a);
+// aa. Usa reverse para invertir el array anterior.
+array50.reverse();
