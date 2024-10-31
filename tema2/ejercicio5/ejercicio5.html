@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acertijo Matemático</title>
+</head>
+<body>
+    <h1>Acertijo Matemático</h1>
+    <div id="acertijo"></div>
+    <input type="number" id="respuesta" placeholder="Escribe tu respuesta">
+    <button onclick="verificarRespuesta()">Comprobar</button>
+    <div id="resultado"></div>
+
+    <script>
+        let num1 = Math.floor(Math.random() * 10);
+        let num2 = Math.floor(Math.random() * 10);
+        let operador = Math.random() > 0.5 ? '+' : '-';
+        let correcto = operador === '+' ? num1 + num2 : num1 - num2;
+        document.getElementById('acertijo').innerText = `?Cuánto es ${num1} ${operador} ${num2}?`;
+        function verificarRespuesta() {
+            let respuesta = parseInt(document.getElementById('respuesta').value);
+            if (respuesta === correcto) {
+                document.getElementById('resultado').innerText = "¡Correcto!";
+            } else {
+                document.getElementById('resultado').innerText = "Inténtalo de nuevo.";
+            }
+        }
+    </script>
+</body>
+</html>

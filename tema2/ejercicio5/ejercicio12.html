@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .botones {
+            margin: 10px 0;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado, #marcador, #ganador {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #ganador {
+            font-weight: bold;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Piedra, Papel o Tijera - Mejor de Tres</h1>
+    <div class="botones">
+        <button onclick="jugar('piedra')">Piedra</button>
+        <button onclick="jugar('papel')">Papel</button>
+        <button onclick="jugar('tijera')">Tijera</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="marcador">Tú: 0 - Máquina: 0</div>
+    <div id="ganador"></div> <!-- Nuevo div para mostrar el ganador -->
+    <div class="botones">
+        <button onclick="iniciarPartida()">Iniciar Partida</button>
+        <button onclick="interrumpirPartida()">Interrumpir Partida</button>
+    </div>
+
+    <script>
+        let puntuacionUsuario = 0;
+        let puntuacionMaquina = 0;
+        let partidaEnCurso = false;
+
+        function iniciarPartida() {
+            puntuacionUsuario = 0;
+            puntuacionMaquina = 0;
+            partidaEnCurso = true;
+            document.getElementById('marcador').innerText = `Tú: 0 - Máquina: 0`;
+            document.getElementById('resultado').innerText = '';
+            document.getElementById('ganador').innerText = '';
+        }
+
+        function interrumpirPartida() {
+            partidaEnCurso = false;
+            document.getElementById('ganador').innerText = 'Partida interrumpida.';
+        }
+
+        function jugar(eleccionUsuario) {
+            if (!partidaEnCurso) {
+                document.getElementById('ganador').innerText = 'Inicia una partida primero.';
+            return;
+        }
+
+        const opciones = ['piedra', 'papel', 'tijera'];
+        const eleccionMaquina = opciones[Math.floor(Math.random() * 3)];
+        let resultado = '';
+
+        if (eleccionUsuario === eleccionMaquina) {
+            resultado = 'Empate';
+        } else if (
+        (eleccionUsuario === 'piedra' && eleccionMaquina === 'tijera') ||
+        (eleccionUsuario === 'papel' && eleccionMaquina === 'piedra') ||
+        (eleccionUsuario === 'tijera' && eleccionMaquina === 'papel')
+        ) {
+            resultado = 'Ganaste';
+            puntuacionUsuario++;
+        } else {
+            resultado = 'Perdiste';
+            puntuacionMaquina++;
+        }
+        document.getElementById('resultado').innerText = `Tú: ${eleccionUsuario} - Máquina: ${eleccionMaquina} => ${resultado}`;
+        document.getElementById('marcador').innerText = `Tú: ${puntuacionUsuario} - Máquina: ${puntuacionMaquina}`;
+        if (puntuacionUsuario === 2 || puntuacionMaquina === 2) {
+            let ganador = puntuacionUsuario === 2 ? 'Tú' : 'Máquina';
+            document.getElementById('ganador').innerText = `${ganador} ganaste la mejor de tres!`;
+            partidaEnCurso = false;
+            }
+        }
+    </script>
+</body>
+</html>

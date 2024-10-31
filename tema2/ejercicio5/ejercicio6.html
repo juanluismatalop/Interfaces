@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Contraseñas</title>
+</head>
+<body>
+    <h1>Generador de Contraseñas</h1>
+    <input type="number" id="longitud" placeholder="Tamaño de la contraseña">
+    <button onclick="generarContrasena()">Generar</button>
+    <div id="contrasena"></div>
+
+    <script>
+        function generarContrasena() {
+            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@%^&*()';
+            let longitud = parseInt(document.getElementById('longitud').value);
+            let contrasena = '';
+            for (let i = 0; i < longitud; i++) {
+                contrasena += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            document.getElementById('contrasena').innerText = contrasena;
+        }
+    </script>
+</body>
+</html>

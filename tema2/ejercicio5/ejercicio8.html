@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Validado</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+    <form id="miFormulario" onsubmit="return validarFormulario()">
+        <label>Nombre: <input type="text" id="nombre"></label><br>
+        <label>Correo Electrónico: <input type="email" id="correo"></label><br>
+        <label>Edad: <input type="number" id="edad"></label><br>
+        <button type="submit">Enviar</button>
+    </form>
+    <div id="resultado"></div>
+    <script>
+        function validarFormulario() {
+            let nombre = document.getElementById('nombre').value;
+            let correo = document.getElementById('correo').value;
+            let edad = parseInt(document.getElementById('edad').value);
+            let resultado = document.getElementById('resultado');
+            if (nombre.length <= 3) {
+                resultado.innerText = "El nombre debe tener más de 3 caracteres.";
+                return false;
+            }
+            if (edad < 0 || edad > 120) {
+                resultado.innerText = "La edad debe ser un número entre 0 y 120.";
+                return false;
+            }
+            let regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexCorreo.test(correo)) {
+                resultado.innerText = "El correo electrónico no es válido.";
+                return false;
+            }
+            resultado.innerText = "Formulario enviado correctamente.";
+            return true;
+        }
+    </script>
+</body>
+</html>
