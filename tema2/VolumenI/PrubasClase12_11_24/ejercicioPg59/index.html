@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Callback Hell</title>
+</head>
+<body>
+    <div id="content">
+        <h1>Información del Usuario</h1>
+        <div id="user"></div>
+        <h2>Posts del Usuario</h2>
+        <div id="posts"></div>
+        <h3>Comentarios del Primer Post</h3>
+        <div id="comments"></div>
+    </div>
+    <script>
+        function fetchData(url, callback) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    callback(null, JSON.parse(xhr.responseText));
+                } else {
+                    callback(`Error ${xhr.status}: ${xhr.statusText}`, null);
+                }
+            };
+            xhr.onerror = function() {
+                callback('Error de conexión', null);
+            };
+            xhr.send();
+        }
+        // Iniciamos la secuencia de callbacks
+        fetchData('https://jsonplaceholder.typicode.com/users/1', function(error, user) {
+            if (error) {
+                return console.error('Error al obtener el usuario:', error);
+            }
+        // Actualizar el DOM con la información del usuario
+            const userDiv = document.getElementById('user');
+            userDiv.innerHTML = `<p><strong>Nombre:</strong> ${user.name}</p>
+            <p><strong>Email:</strong> ${user.email}</p>`;
+            fetchData(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`, function
+            (error, posts) {
+                if (error) {
+                    return console.error('Error al obtener los posts:', error);
+            }
+        // Actualizar el DOM con los posts del usuario
+            const postsDiv = document.getElementById('posts');
+            postsDiv.innerHTML = posts.map(post => `<p><strong>${post.title}</strong>: ${
+                post.body}</p>`).join('');
+                if (posts.length > 0) {
+                    fetchData(`https://jsonplaceholder.typicode.com/posts/${posts[0].id}/
+                    comments`, function(error, comments) {
+                        if (error) {
+                            return console.error('Error al obtener los comentarios:', error);
+                        }
+        // Actualizar el DOM con los comentarios del primer post
+                        const commentsDiv = document.getElementById('comments');
+                        commentsDiv.innerHTML = comments.map(comment => `<p><strong>${comment
+                        .name}</strong>: ${comment.body}</p>`).join('');
+                    });
+                } else {
+                    console.log('El usuario no tiene posts.');
+                }
+            });
+        });
+    </script>
+</body>
+</html
