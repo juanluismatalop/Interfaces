@@ -1,0 +1,94 @@
+<!-- 1. Crea una función arrow asíncrona con el parámetro edad, mediante async/await, y carga los
+datos de https://randomuser.me/api/?results=100, después mediante funciones de los arrays:
+a. Filtra sólo las mujeres.
+b. Genera un array nuevo con los campos username, full_name, email, age.
+c. Busca al primer usuario, mujer, que tenga menos edad que el parámetro dado y retorna el
+dato. El parámetro edad tiene valor por defecto 18.
+d. Llama a la función en el ámbito global e imprime el resultado en consola.
+e. Si ocurre un error imprimelo en consola. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio Asincronía y DOM</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+
+    pre {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Filtrar Usuarios - Async/Await</h1>
+  <p>Consulta de datos mediante <code>fetch</code> y filtrado con funciones de array.</p>
+  <h2>Resultado:</h2>
+  <pre id="result">Cargando...</pre>
+
+  <script>
+    // Función principal para cargar y procesar usuarios
+    const fetchAndFilterUsers = async (edad = 18) => {
+      try {
+        // Fetch a la API
+        const response = await fetch('https://randomuser.me/api/?results=100');
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`); // Manejo de errores HTTP
+        }
+
+        const data = await response.json();
+
+        // Filtrar solo mujeres
+        const women = data.results.filter(user => user.gender === 'female');
+
+        // Mapear resultados al formato deseado
+        const formattedUsers = women.map(user => ({
+          username: user.login.username,
+          full_name: `${user.name.first} ${user.name.last}`,
+          email: user.email,
+          age: user.dob.age,
+        }));
+
+        // Encontrar la primera mujer con edad menor al parámetro dado
+        const youngUser = formattedUsers.find(user => user.age < edad);
+
+        // Mostrar el resultado en el DOM
+        const resultElement = document.getElementById('result');
+        resultElement.textContent = youngUser 
+          ? JSON.stringify(youngUser, null, 2)
+          : 'No se encontró ninguna usuaria que cumpla el criterio.';
+
+      } catch (error) {
+        // Manejo de errores
+        console.error('Error fetching users:', error);
+        document.getElementById('result').innerHTML = `<span class="error">Error: ${error.message}</span>`;
+      }
+    };
+
+    // Llamada a la función con el parámetro de edad
+    fetchAndFilterUsers(25);
+  </script>
+</body>
+</html>
