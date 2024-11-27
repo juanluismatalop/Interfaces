@@ -1,0 +1,47 @@
+<!-- 
+ 1. Crea una función arrow asíncrona con el parámetro edad, mediante async/await, y carga los
+datos de https://randomuser.me/api/?results=100, después mediante funciones de los arrays:
+    a. Filtra sólo las mujeres.
+    b. Genera un array nuevo con los campos username, full_name, email, age.
+    c. Busca al primer usuario, mujer, que tenga menos edad que el parámetro dado y retorna el
+        dato. El parámetro edad tiene valor por defecto 18.
+    d. Llama a la función en el ámbito global e imprime el resultado en consola.
+    e. Si ocurre un error imprimelo en consola 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>MENU DE FILTROS</h1>
+    <script>
+        const fetchAndFilterUsers = async (edad = 18) => {
+            try{
+                const response = await fetch('https://randomuser.me/api/?results=100');
+                const data = await response.json();
+                // Se filtran los usuarios que son mujeres
+                const women = data.results.filter(user => user.gender === 'female');
+                console.log('Filtered Women:', women);
+
+                const formattedUsers = women.map(user => ({
+                    username: user.login.username,
+                    full_name: '${user.name.first} ${user.name.last}',
+                    email: user.email,
+                    age: user.dob.age
+                }));
+                console.log('Formatted Users:', formattedUsers);
+                
+                //Busca el menor edad 
+                const youngUser = formattedUsers.find(user => user.age < edad);
+                console.log(youngUser);
+            }catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+        
+    </script>
+</body>
+</html>
