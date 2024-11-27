@@ -1,0 +1,121 @@
+<!-- 2. Implementa los siguientes apartados.
+a. Crea un objeto Javascript con las propiedades dni, nombre, apellidos y edad con valores
+inventados. Serializa el objeto a json y después deserializalo.
+b. Recorre el objeto con un bucle imprimiendo sus propiedades y valores.
+c. Crea una función que desestructure la propiedad nombre y dni y los imprima en consola.
+d. Crea una función arrow con el parámetro tam que genere un array de números aleatorios
+de 0 a 100 de tamaño tam. Llama a la función y desestructura el primer y segundo elemento -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 2 - JSON y Arrays</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+
+    pre {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 2 - JSON y Arrays</h1>
+
+  <div id="output"></div>
+
+  <script>
+    const outputDiv = document.getElementById('output');
+
+    const addSection = (title, content) => {
+      const section = document.createElement('div');
+      section.classList.add('section');
+      
+      const sectionTitle = document.createElement('div');
+      sectionTitle.classList.add('section-title');
+      sectionTitle.textContent = title;
+
+      const sectionContent = document.createElement('pre');
+      sectionContent.textContent = content;
+
+      section.appendChild(sectionTitle);
+      section.appendChild(sectionContent);
+      outputDiv.appendChild(section);
+    };
+
+    const persona = {
+      dni: '12345678A',
+      nombre: 'Juan',
+      apellidos: 'Pérez',
+      edad: 30,
+    };
+
+    const personaJSON = JSON.stringify(persona);
+    console.log('Objeto serializado:', personaJSON);
+    addSection('a. Objeto Serializado', personaJSON);
+
+    const personaDeserializada = JSON.parse(personaJSON);
+    console.log('Objeto deserializado:', personaDeserializada);
+    addSection('a. Objeto Deserializado', JSON.stringify(personaDeserializada, null, 2));
+
+    // b. Recorrido del objeto
+    const recorrido = [];
+    for (let prop in personaDeserializada) {
+      const line = `${prop}: ${personaDeserializada[prop]}`;
+      console.log(line);
+      recorrido.push(line);
+    }
+    addSection('b. Recorrido del Objeto', recorrido.join('\n'));
+
+    const printNombreYDNI = ({ nombre, dni }) => {
+      const output = `Nombre: ${nombre}, DNI: ${dni}`;
+      console.log(output);
+      return output;
+    };
+    const nombreDNI = printNombreYDNI(persona);
+    addSection('c. Desestructuración de Propiedades', nombreDNI);
+
+    const generarArrayAleatorio = (tam) => {
+      return Array.from({ length: tam }, () => Math.floor(Math.random() * 101));
+    };
+
+    const aleatorioArray = generarArrayAleatorio(10);
+    const [primero, segundo, ...resto] = aleatorioArray;
+
+    console.log('Primero:', primero);
+    console.log('Segundo:', segundo);
+    console.log('Resto:', resto);
+
+    addSection(
+      'd. Generación de Array Aleatorio',
+      `Array Completo: ${aleatorioArray.join(', ')}\nPrimero: ${primero}\nSegundo: ${segundo}\nResto: ${resto.join(', ')}`
+    );
+  </script>
+</body>
+</html>

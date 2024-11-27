@@ -1,0 +1,150 @@
+<!-- 3. Crea una página web para escribir la carta a los reyes magos.
+a. El usuario puede escribir el regalo que desea pedir en una caja de texto. Cuando pulsa el
+botón “Pedir” se añade a la lista.
+b. Crea un botón para borrar la lista completa.
+c. Muestra un mensaje que indique el total de regalos pedidos en la lista.
+d. Cada elemento de la lista tiene un botón o enlace que al pulsarlo lo eliminará -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    /* Estilos Generales */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      background-image: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+    }
+
+    h1 {
+      text-align: center;
+      color: #c70039;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    button {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #lista-regalos {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .regalo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .regalo button {
+      background-color: #dc3545;
+    }
+
+    .regalo button:hover {
+      background-color: #c82333;
+    }
+
+    #total-regalos {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #155724;
+    }
+
+    /* Detalles Navideños */
+    body:before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/snow.png');
+      z-index: -1;
+    }
+
+    h1:before {
+      content: '🎄 ';
+    }
+
+    h1:after {
+      content: ' 🎁';
+    }
+
+    button:before {
+      content: '🎅 ';
+    }
+
+    .regalo span {
+      font-size: 1.2em;
+    }
+  </style>
+    </style>
+</head>
+<body>
+    <h1>Mi carta de reyes magos</h1>
+    <input type="text" id="regalo" placeholder="Escribe tu regalo...">
+    <button onclick="agregarRegalo()">Pedir</button>
+    <button onclick="borrarLista()">Borrar Lista</button>
+    <ul id="lista-regalos"></ul>
+    <p id="total-regalos">Total de regalos: 0</p>
+    <script>
+        const  listaRegalos = document.getElementById('lista-regalos');
+        const totalRegalos = document.getElementById('total-regalos');
+        let regalos = [];
+
+        function agregarRegalo(){
+            const regalo = document.getElementById('regalo').value;
+            if(regalo){
+                regalos.push(regalo);
+                document.getElementById('regalo').value = '';
+                actualizarLista();
+            }
+        }
+
+        function borrarLista(){
+            regalos = [];
+            actualizarLista();
+        }
+
+        function eleminarRegalo(index){
+            regalos.splice(index, 1)
+            actualizarLista();
+        }
+
+        function actualizarLista(){
+            listaRegalos.innerHTML = '';
+            regalos.forEach((regalo, index) => {
+                const li = documetn.createElement('li');
+                li.className = 'regalo';
+                li.innerHTML = '${regalo} <button onclick="eleminarRegalo(${index})">Eliminar</button>';
+                listaRegalos.appendChild(li);
+            });
+            totalRegalos.innerText = 'Total de regalos: ${regalos.length}';
+        }
+    </script>
+</body>
+</html>
