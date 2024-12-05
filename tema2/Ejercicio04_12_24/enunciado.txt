@@ -1,0 +1,40 @@
+Ejercicio 1
+    Los reyes son los padres
+    datos de json-server
+    {
+        "ninos": [
+            { "id": 1, "nombre": "Luis", "comportamiento": "bueno" },
+            { "id": 2, "nombre": "Ana", "comportamiento": "malo" },
+            { "id": 3, "nombre": "María", "comportamiento": "bueno" },
+            { "id": 4, "nombre": "Juan", "comportamiento": "bueno" }
+        ],
+        "listas_deseos": [
+            { "id": 1, "regalos": [201, 202] },
+            { "id": 2, "regalos": [203] },
+            { "id": 3, "regalos": [204, 205] },
+            { "id": 4, "regalos": [201, 202, 203] }
+        ],
+        "regalos": [
+            { "id": 201, "nombre": "Juego de Lego", "precio": 29.99 },
+            { "id": 202, "nombre": "Coche teledirigido", "precio": 49.99 },
+            { "id": 203, "nombre": "Rompecabezas", "precio": 14.99 },
+            { "id": 204, "nombre": "Muñeca", "precio": 19.99 },
+            { "id": 205, "nombre": "Juego de mesa", "precio": 24.99 },
+            { "id": 206, "nombre": "Carbón", "precio": 1 },
+        ]
+    }
+
+    calcula cuanto dinero se va a gastar los reyes magos teniendo en cuenta que los niños de mal corpontamiento 
+    se le regalara carbon
+
+    a. Crea una función que consulte los 3 endpoints y retorne el cálculo.
+    
+    b. Crea otra función que primero consulte la lista de niños, después se recorren con un bucle y se
+    consulta la lista de deseos de cada niño. Posteriormente, se consulta el precio de cada regalo. La
+    función debe retornar el total.
+    
+    c. Crea una función que genere de forma dinámica una lista, en el DOM, que muestre cada niño y su
+    lista de deseos.
+    
+    d. Crea un botón “Eliminar” en cada regalo de la lista. Al pulsarlo deja de mostrarse en el DOM.
+
